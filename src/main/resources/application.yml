@@ -1,0 +1,7 @@
+logging:
+  level:
+    org:
+      springframework: debug
+spring:
+  application:
+    name: =sg
