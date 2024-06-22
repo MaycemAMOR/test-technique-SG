@@ -1,7 +1,7 @@
 package com.sg.ceci.service;
 
-import com.sg.ceci.model.Employees;
-import com.sg.ceci.model.Revenue;
+import com.sg.ceci.model.Earning;
+import com.sg.ceci.model.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,46 +10,46 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.sg.ceci.model.Type.*;
-import static com.sg.ceci.service.CalculateTotalRevenue.calculateTotalRevenue;
+import static com.sg.ceci.service.ServiceEmployee.computeTotalIncome;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RevenueCalculatorTest {
+public class ServiceEmployeeTest {
 
-    private List<Employees> employeesList;
+    private List<Employee> employeesList;
 
     @BeforeEach
     public void setUp() {
         employeesList = Arrays.asList(
-                new Employees(Arrays.asList(
-                        Revenue.builder()
+                new Employee(Arrays.asList(
+                        Earning.builder()
                                 .type(PAY)
                                 .value(BigDecimal.valueOf(10000.00)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(PRIME)
                                 .value(BigDecimal.valueOf(70000.99)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(RTT)
                                 .value(BigDecimal.valueOf(20000.36)).build()
                 ), false),
-                new Employees(Arrays.asList(
-                        Revenue.builder()
+                new Employee(Arrays.asList(
+                        Earning.builder()
                                 .type(PAY)
                                 .value(BigDecimal.valueOf(15000.00)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(PRIME)
                                 .value(BigDecimal.valueOf(79000.99)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(STOCK_OPTION)
                                 .value(BigDecimal.valueOf(20000.36)).build()
                 ), false),
-                new Employees(Arrays.asList(
-                        Revenue.builder()
+                new Employee(Arrays.asList(
+                        Earning.builder()
                                 .type(PAY)
                                 .value(BigDecimal.valueOf(1000.00)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(PRIME)
                                 .value(BigDecimal.valueOf(700.99)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(STOCK_OPTION)
                                 .value(BigDecimal.valueOf(20.36)).build()
                 ), true) // Intern
@@ -57,41 +57,41 @@ public class RevenueCalculatorTest {
     }
 
     @Test
-    public void testCalculateTotalRevenue() {
-        double expectedTotalRevenue = 10000.00 + 70000.99 + 20000.36 + 15000.00 + 79000.99;
-        double actualTotalRevenue = calculateTotalRevenue(employeesList);
-        assertEquals(expectedTotalRevenue, actualTotalRevenue);
+    public void testComputeTotalIncome() {
+        double expectedTotalIncome = 10000.00 + 70000.99 + 20000.36 + 15000.00 + 79000.99;
+        double actualTotalIncome = computeTotalIncome(employeesList);
+        assertEquals(expectedTotalIncome, actualTotalIncome);
     }
 
     @Test
-    public void testCalculateTotalRevenueWithThreshold() {
-        List<Employees> employeesWithThreshold = Arrays.asList(
-                new Employees(Arrays.asList(
-                        Revenue.builder()
+    public void testComputeTotalIncomeWithThreshold() {
+        List<Employee> employeesWithThreshold = Arrays.asList(
+                new Employee(Arrays.asList(
+                        Earning.builder()
                                 .type(PAY)
                                 .value(BigDecimal.valueOf(10000.00)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(PRIME)
                                 .value(BigDecimal.valueOf(7000.99)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(STOCK_OPTION)
                                 .value(BigDecimal.valueOf(20.36)).build()
                 ), false),
-                new Employees(Arrays.asList(
-                        Revenue.builder()
+                new Employee(Arrays.asList(
+                        Earning.builder()
                                 .type(PAY)
                                 .value(BigDecimal.valueOf(10000.00)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(PRIME)
                                 .value(BigDecimal.valueOf(7000.99)).build(),
-                        Revenue.builder()
+                        Earning.builder()
                                 .type(STOCK_OPTION)
                                 .value(BigDecimal.valueOf(20.36)).build()
                 ), false)
         );
 
-        double expectedTotalRevenue = 10000.00 + 7000.99 + 10000.00 + 7000.99;
-        double actualTotalRevenue = calculateTotalRevenue(employeesWithThreshold);
-        assertEquals(expectedTotalRevenue, actualTotalRevenue);
+        double expectedTotalIncome = 10000.00 + 7000.99 + 10000.00 + 7000.99;
+        double actualTotalIncome = computeTotalIncome(employeesWithThreshold);
+        assertEquals(expectedTotalIncome, actualTotalIncome);
     }
 }

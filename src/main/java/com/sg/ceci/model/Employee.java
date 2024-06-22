@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employees {
-    List<Revenue> revenue;
+public class Employee {
+    List<Earning> earnings;
     boolean intern;
 }

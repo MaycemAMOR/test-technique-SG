@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Revenue {
+public class Earning {
 
     private BigDecimal value;
     private Type type;
