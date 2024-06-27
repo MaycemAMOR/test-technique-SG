@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.sg.ceci.model.Type.*;
-import static com.sg.ceci.service.ServiceEmployee.computeTotalIncome;
+import static com.sg.ceci.service.ServiceEmployee.computeTotalIncomeDouble;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServiceEmployeeTest {
@@ -59,7 +59,7 @@ public class ServiceEmployeeTest {
     @Test
     public void testComputeTotalIncome() {
         double expectedTotalIncome = 10000.00 + 70000.99 + 20000.36 + 15000.00 + 79000.99;
-        double actualTotalIncome = computeTotalIncome(employeesList);
+        double actualTotalIncome = computeTotalIncomeDouble(employeesList);
         assertEquals(expectedTotalIncome, actualTotalIncome);
     }
 
@@ -91,7 +91,7 @@ public class ServiceEmployeeTest {
         );
 
         double expectedTotalIncome = 10000.00 + 7000.99 + 10000.00 + 7000.99;
-        double actualTotalIncome = computeTotalIncome(employeesWithThreshold);
+        double actualTotalIncome = computeTotalIncomeDouble(employeesWithThreshold);
         assertEquals(expectedTotalIncome, actualTotalIncome);
     }
 }

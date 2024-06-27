@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.sg.ceci.model.Type.*;
 import static com.sg.ceci.service.ServiceEmployee.computeCeciTax;
-import static com.sg.ceci.service.ServiceEmployee.computeTotalIncome;
+import static com.sg.ceci.service.ServiceEmployee.computeTotalIncomeDouble;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -62,7 +62,7 @@ class SgApplicationTests {
     @Test
     public void testComputeCeciTax() {
         double expectedTax = (10000.00 + 7000.99 + 20000.36 + 15000.00) * 0.6;
-        double actualTotalIncome = computeTotalIncome(employeesList);
+        double actualTotalIncome = computeTotalIncomeDouble(employeesList);
         double actualTax = computeCeciTax(actualTotalIncome);
         assertEquals(expectedTax, actualTax);
     }

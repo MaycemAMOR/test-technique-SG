@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.sg.ceci.model.Type.*;
-import static com.sg.ceci.service.ServiceEmployee.computeCeciTax;
-import static com.sg.ceci.service.ServiceEmployee.computeTotalIncome;
+import static com.sg.ceci.service.ServiceEmployee.*;
 
 public class SgApplication {
 
@@ -56,10 +55,13 @@ public class SgApplication {
 
         List<Employee> employeesList = Arrays.asList(employee1, employee2, employee3);
 
-        double totalIncome = computeTotalIncome(employeesList);
+        double totalIncome = computeTotalIncomeDouble(employeesList);
         double ceciTax = computeCeciTax(totalIncome);
+        BigDecimal totalIncomeBigDecimal = computeTotalIncomeBigDecimal(employeesList);
+        BigDecimal ceciTaxBigDecimal = computeCeciTax(totalIncomeBigDecimal);
 
-        System.out.println("The amount of the CECI Tax: " + ceciTax);
+        System.out.println("The amount of the CECI Tax: calculated with double type : " + ceciTax);
+        System.out.println("The amount of the CECI Tax: calculated with BigDecimal type : " + ceciTaxBigDecimal);
     }
 
 
